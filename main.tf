@@ -1,4 +1,4 @@
- tfprovider "google" {
+ provider "google" {
   # Configuration options
   project = var.GOOGLE_PROJECT
   region  = var.GOOGLE_REGION
@@ -8,7 +8,7 @@ resource "google_container_cluster" "this" {
   name     = var.GKE_CLUSTER_NAME
   location = var.GOOGLE_REGION
 
-  initial_node_count       = 3
+  initial_node_count       = 5
   remove_default_node_pool = true
 
     workload_identity_config {
