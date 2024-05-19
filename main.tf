@@ -1,4 +1,4 @@
- provider "google" {
+provider "google" {
   # Configuration options
   project = var.GOOGLE_PROJECT
   region  = var.GOOGLE_REGION
@@ -8,7 +8,7 @@ resource "google_container_cluster" "this" {
   name     = var.GKE_CLUSTER_NAME
   location = var.GOOGLE_REGION
 
-  initial_node_count       = 5
+  initial_node_count       = 1
   remove_default_node_pool = true
 
     workload_identity_config {
@@ -44,6 +44,7 @@ module "gke_auth" {
   location             = var.GOOGLE_REGION
 }
 
+
 data "google_client_config" "current" {}
 
 data "google_container_cluster" "main" {
@@ -51,9 +52,8 @@ data "google_container_cluster" "main" {
   location = var.GOOGLE_REGION
 }
 
-# resource "local_file" "kubeconfig" {
-#   content  = module.gke_auth.kubeconfig_raw
+#resource "local_file" "kubeconfig" {
+#  content  = module.gke_auth.kubeconfig_raw
 #  filename = "${path.module}/kubeconfig"
-#   file_permission = "0400"
-# }
-
+#  file_permission = "0400"
+#}
